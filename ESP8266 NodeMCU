@@ -1,14 +1,13 @@
 #include <ESP8266WiFi.h>
-#include <ESP8266WebServer.h>   // встроенный простой веб‑сервер
+#include <ESP8266WebServer.h>   
 
-// Задай свои SSID и пароль
+
 const char* WIFI_SSID     = "MyWiFi";
 const char* WIFI_PASSWORD = "MyPassword";
 
-ESP8266WebServer server(80);    // HTTP сервер на порту 80
+ESP8266WebServer server(80);    
 
 void handleRoot() {
-  // Пока просто отдаем текст – сюда потом можно вставить HTML/данные датчиков
   server.send(200, "text/plain", "Hello from ESP8266!");
 }
 
@@ -19,8 +18,8 @@ void setup() {
   Serial.println();
   Serial.println("Connecting to WiFi...");
 
-  WiFi.mode(WIFI_STA);                 // режим станции (клиент)[web:40]
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD); // подключение к сети[web:49]
+  WiFi.mode(WIFI_STA);                 
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD); 
 
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
@@ -29,23 +28,19 @@ void setup() {
 
   Serial.println();
   Serial.print("Connected, IP: ");
-  Serial.println(WiFi.localIP());      // IP, по которому зайти в браузере[web:49]
+  Serial.println(WiFi.localIP());      
 
-  // Настраиваем обработчик корневого URL
   server.on("/", handleRoot);
 
-  // TODO: добавить свои маршруты, например /led, /sensor и т.п.
+  // TODO:  /led, /sensor 
   // server.on("/led", handleLed);
 
-  server.begin();                      // запуск веб‑сервера[web:43][web:48]
+  server.begin();                      
   Serial.println("HTTP server started");
 }
 
 void loop() {
-  server.handleClient();   // обрабатываем входящие HTTP‑запросы[web:43]
+  server.handleClient();  
 
-  // TODO: здесь можно:
-  //  - читать датчики
-  //  - отправлять данные на сервер
-  //  - реализовать логику управления пинами по запросам
+
 }
