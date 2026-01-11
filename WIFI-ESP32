@@ -1,6 +1,6 @@
-#include <WiFi.h>   // стандартная WiFi‑библиотека для ESP32
+#include <WiFi.h>  
 
-// ДАННЫЕ ВАШЕЙ СЕТИ
+
 const char* WIFI_SSID     = "MyWiFi";
 const char* WIFI_PASSWORD = "MyPassword";
 
@@ -10,8 +10,7 @@ void setup() {
 
   Serial.println();
   Serial.println("ESP32 WiFi init...");
-  
-  // Режим станции (клиент)
+
   WiFi.mode(WIFI_STA);
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
 
